@@ -19,7 +19,7 @@ const YearBlock = ({ year, data }) => {
       <UlWrap>
         { 
           data.map(item => 
-            <Item key={item._id} time={item.createAt}>
+            <Item key={item._id} time={item.createAt} id={item._id}>
               { item.title }
             </Item>
           ) 

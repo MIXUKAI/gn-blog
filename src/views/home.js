@@ -16,11 +16,10 @@ class Home extends React.Component {
   }
 
   render() {
-    const { match } = this.props;
     return (
       <Layout>
         <Side />
-        <div style={{ flexBasis: '70%', position: 'relative' }}>
+        <div style={{ flexBasis: '75%', position: 'relative' }}>
           <Switch>
             <Route 
               exact path="/"

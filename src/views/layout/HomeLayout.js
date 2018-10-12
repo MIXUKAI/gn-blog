@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   display: flex;
   position: relative;
   margin: 0 auto;
-  max-width: 840px;
+  max-width: 960px;
   min-height: 840px;
   padding: 30px 20px 20px 20px;
   overflow: hidden;

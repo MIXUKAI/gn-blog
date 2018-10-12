@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import User from './User';
 
 const SideContainer = styled.aside`
-  flex-basis: 30%;
+  flex-basis: 25%;
 `;
 
 const Side = () => {
