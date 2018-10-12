@@ -43,7 +43,7 @@ class Article extends Component {
     axios.get(url)
       .then(res => {
         this.props.loading(false);
-        
+
         const data = res.data;
         this.setState({
           title: data.title,

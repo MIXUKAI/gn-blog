@@ -31,14 +31,12 @@ class TagArchive extends React.Component {
     axios.get(url)
       .then(res => {
         const data = res.data;
-        console.log(data);
         this.setState({ articles: data });
       })
       .catch(err => console.log(err));
   }
 
   componentDidUpdate(prevProps) {
-    console.log('did update');
     if (prevProps.match.params.name !== this.props.match.params.name) {
       if (this.props.match.params.name === void 0) {
         this.fetchAllArticles();
@@ -49,7 +47,6 @@ class TagArchive extends React.Component {
   }
 
   componentDidMount() {
-    console.log('did mount')
     if (this.props.match.params.name === void 0) {
       this.fetchAllArticles();
       return;

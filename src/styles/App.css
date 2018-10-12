@@ -49,6 +49,24 @@
   transition: opacity 600ms linear;
 }
 
+.header {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.nav-ul {
+  /* background-color: red; */
+  /* line-height: 65px; */
+  display: flex;
+  line-height: 44px;
+  margin-right: 50px;
+}
+.nav-ul li {
+  display: inline-block;
+  padding: 0 15px;
+  margin: 0 15px;
+}
+
 @media screen and (max-width: 680px) {
   #root .home-wrapper {
     flex-direction: column;
@@ -56,11 +74,17 @@
   .user-container {
     width: 100%;
   }
+  .user-container img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+  }
   .link-list {
     margin: 20px 0;
   }
   .link-list li {
     padding: 10px 5px;
+    margin: 0 5px;
     display: inline;
     font-size: 15px;
   }

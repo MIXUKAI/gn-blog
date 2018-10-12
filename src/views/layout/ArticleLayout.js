@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Header from '../Article/components/Header';
 
 const Wrapper = styled.div`
   position: relative;
@@ -14,11 +15,14 @@ const Wrapper = styled.div`
 
 const Layout = ({ children }) => {
   return (
-    <Wrapper>
-      <div className="body">
-        {children}
-      </div>
-    </Wrapper>
+    [
+      <Header />,
+      <Wrapper>
+        <div className="body">
+          {children}
+        </div>
+      </Wrapper>
+    ]
   );
 };
 

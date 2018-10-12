@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import baseApiURL from '../../utils/api';
 import ArticleList from './components/ArticleList';
 import Pagination from './components/Pagination';
-
-const pageRe = /page=(\d*)&?/;
-
-function setUrl(page) {
-  let url = `${window.location.pathname}?page=${page}`;
-  let title = window.document.title;
-  let stateObj = { page, title };
-  window.history.pushState(stateObj, title, url);
-};
 
 class HomeArticles extends Component {
   state = {
@@ -21,44 +13,38 @@ class HomeArticles extends Component {
   }
 
   handlePopState = (popState) => {
-    // 不为null
-    if (popState.state) {
-      const page = popState.state.page;
+    const state = popState.state;
+    // 存在的话
+    if (state) {
+      const page = state.state.page;
       this.fetchData(page);
     }
   }
 
   // ajax请求获取数据
-  getArticlesfromDB = (page) => {
+  getArticlesfromDB = (targetPage) => {
     // 已经控制了传入的page指因此不用再判断了
-    const url = `${baseApiURL}/article/?page=${page}`;
-      
+    const url = `${baseApiURL}/article/?page=${targetPage}`;
+
     this.props.loading(true);
-    
+
     axios.get(url)
       .then(res => {
         // TODO: 现在是为了效果，以后改掉
-        console.log(res.data);
-        setTimeout(() => {
-          // history.pushState
-          setUrl(page);
-          this.setState({ articles: res.data, page });
-          this.props.loading(false);
-        }, 300);
+        this.setState({ articles: res.data, page: targetPage });
+        this.props.loading(false);
       });
   }
 
   // 获取数据，从缓存或者ajax请求
-  fetchData = (page) => {
-    // 读取某个page页面缓存
-    const articles = localStorage.getItem(`articles${page}`);
-    // 不存在的话发送请求
+  fetchData = (targetPage) => {
+    const articles = sessionStorage.getItem(`articles${targetPage}`);
     if (!articles) {
-      this.getArticlesfromDB(page);
+      this.getArticlesfromDB(targetPage);
     } else {
-      this.setState({articles: JSON.parse(articles), page});
-      setUrl(page);
+      this.setState({ articles: JSON.parse(articles), page: targetPage });
     }
+    this.props.history.push(`/page/${targetPage}`, { targetPage });
   }
 
   handleNext = () => {
@@ -73,43 +59,34 @@ class HomeArticles extends Component {
     // 监听popstate事件，当history.back等操作的时候重新获取数据
     window.addEventListener('popstate', this.handlePopState);
 
-    // 根据url来读取page的value，在刷新页面或者重新路由到该组件的时候有用
-    const result = window.location.href.match(pageRe);
-    // 默认值为1
-    let page = 1;
-    if (result) {
-      // page 此时为string
-      const value = parseInt(result[1]);
-      // page的数字有效不为NaN
-      if (!Number.isNaN(value)) {
-        page = value;
-      }
+    const page = parseInt(this.props.match.params.page);
+    const articles = sessionStorage.getItem(`articles${page}`);
+    // 不存在的话发送请求
+    if (!articles) {
+      this.getArticlesfromDB(page);
+    } else {
+      this.setState({ articles: JSON.parse(articles), page });
     }
-    this.fetchData(page);
+    // 注意这里不能pushstate，之前直接调用this.fetchData(page), 组件重新挂载的时候就pushState，造成了bug
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    // TODO: 这里不能用&&是因为促使的时候，两个page都为1，到时候这里改善下
-    if (this.state.articles !== nextState.articles ||
-        this.state.page !== nextState.page) {
-      return true;
-    }
-    return false;
-  }
+  storeSessionStorage = (targetState) => {
+    const { page, articles } = targetState;
+    sessionStorage.setItem(`articles${page}`, JSON.stringify(articles));
+    sessionStorage.setItem(`articlesDate${page}`, Date.now());
+  };
 
-  componentWillUpdate(nextProps, nextState) {
-    // 只要state更新并且通过shouldComponentUpdate就会在localStorage中存储数据
-    // 但是如果还是旧的数据的话只有date会变，因为articles本来就是从这里读取的
-    // TODO：判断时间来看时候失效
-    const page = nextState.page;
-    localStorage.setItem(`articles${page}`, JSON.stringify(nextState.articles));
-    localStorage.setItem(`articlesDate${page}`, Date.now());
+  componentDidUpdate(prevProps, prevState) {
+    const nowpage = this.state.page;
+    // TODO: 这里存储优化下？
+    sessionStorage.setItem(`articles${nowpage}`, JSON.stringify(this.state.articles));
+    sessionStorage.setItem(`articlesDate${nowpage}`, Date.now());
   }
 
   componentWillUnmount() {
     window.removeEventListener('popstate', this.handlePopState);
   }
-  
+
   render() {
     const { articles, page } = this.state;
     return (
@@ -121,4 +98,4 @@ class HomeArticles extends Component {
   }
 }
 
-export default HomeArticles;
+export default withRouter(HomeArticles);

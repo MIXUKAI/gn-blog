@@ -28,6 +28,7 @@ class App extends React.Component {
           <RainBow />
           <Switch>
             <PropsRoute exact path="/" component={Home} loading={this.handleLoading}/>
+            <PropsRoute path="/page" component={Home} loading={this.handleLoading}/>
             <PropsRoute path="/tags" component={Home} />
             <PropsRoute path="/article/:id" component={Article} loading={this.handleLoading}/>
             <Route component={NotFound} />
