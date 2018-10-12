@@ -29,7 +29,7 @@ export default () => {
   return (
     <Wrap>
       <i className="iconfont"
-        style={{ fontSize: 80, color: 'rgb(44,139,188)', cursor: 'pointer', userSelect: 'none'}}
+        style={{ fontSize: 65, color: 'rgb(44,139,188)', cursor: 'pointer', userSelect: 'none'}}
         onClick={returnToTop}>&#xe633;</i>
     </Wrap>
   );

@@ -29,7 +29,7 @@ class App extends React.Component {
           <Switch>
             <PropsRoute exact path="/" component={Home} loading={this.handleLoading}/>
             <PropsRoute path="/tags" component={Home} />
-            <Route path="/article/:id" component={Article} />
+            <PropsRoute path="/article/:id" component={Article} loading={this.handleLoading}/>
             <Route component={NotFound} />
           </Switch>
           <Cover show={loading}/>

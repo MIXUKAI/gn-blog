@@ -1,0 +1,75 @@
+.article-title {
+  font-size: 28px;
+  font-weight: 500;
+  color: #333;
+}
+.md-body {
+  h2,h3,h4,h5,h6 {
+    margin: 10px 0 10px 3px;
+    color: #383838;
+    position: relative;
+  }
+
+  h2::before {
+    content: "#";
+    color: #6fa3ef;
+    position: absolute;
+    left: -1rem;
+    top: 2px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  p {
+    line-height: 1.8;
+  }
+
+  pre {
+    margin: 0 -1em;
+    code {
+      padding: 0.5em 1.5em;
+      font-family: "Source Code Variable";
+    }
+  }
+
+  code {
+    background: rgba(0, 0, 0, .05);
+    padding: 3px 4px;
+    margin: 0 2px;
+  }
+
+  strong {
+    background-color: rgba(250, 208, 0, .4);
+    padding: .3em;
+  }
+
+  ol {
+    list-style-type: decimal;
+    margin-left: 30px;
+    li {
+      line-height: 1.9;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-left: 30px;
+    li {
+      line-height: 1.9;
+    }
+  }
+
+  blockquote {
+    border-left: 5px solid rgb(44, 139, 188);
+    background: rgba(0, 0, 0, .05);
+    padding: 15px;
+    margin: 13px 0;
+  }
+  a {
+    color: #1fa3ef;
+    &:hover {
+      color: #007acc;
+    }
+  }
+}
+

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import './styles/index.css';
-import '../../styles/atom-one-light.css';
+import './styles/index.scss';
+import '../../styles/solarized-light.css';
 
 import baseApiURL from '../../utils/api';
 import TagList from './components/TagList'
@@ -37,9 +37,13 @@ class Article extends Component {
   }
 
   getArticleById = (id) => {
+    this.props.loading(true);
+
     const url = `${baseApiURL}/article/${id}`;
     axios.get(url)
       .then(res => {
+        this.props.loading(false);
+        
         const data = res.data;
         this.setState({
           title: data.title,
