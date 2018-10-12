@@ -49,10 +49,9 @@ const Item = styled.div`
   background-color: rgb(246, 249, 252);
   margin-bottom: 7px;
   border-radius: 4px;
+  transition: box-shadow .3s ease-in;
   &:hover {
-    background-image: unset;
-    background-color: rgb(255,255,255);
-    box-shadow: 0 0 0 2px rgb(185,206,252);
+    box-shadow: 0 2px 10px rgba(0,0,0,.2);
   }
   a {
     text-decoration: none;
@@ -81,4 +80,5 @@ const Title = styled.h2`
 const Summary = styled.p`
   margin: 0;
   font-size: 14px;
+  color: #61b2a7;
 `;

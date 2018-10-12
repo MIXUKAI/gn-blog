@@ -17,7 +17,6 @@ class Article extends Component {
     super(props)
     this.state = {
       content: '',
-      idRe: /article\/(\w*)/,
       title: '',
       createAt: '',
       tags: [],
@@ -53,7 +52,7 @@ class Article extends Component {
 
   // 挂载完毕ajax获取数据
   componentDidMount() {
-    const id = window.location.href.match(this.state.idRe)[1];
+    const id = this.props.match.params.id;
     this.getArticleById(id);
   }
 
@@ -73,6 +72,7 @@ class Article extends Component {
   };
 };
 
+// { position: 'relative', width: 930, textAlign: 'right' }}
 export default Article;
 
 const Title = styled.h1`
