@@ -1,0 +1,32 @@
+.article-title {
+  font-size: 28px;
+  font-weight: 500;
+  color: #333;
+}
+.md-body {
+
+}
+.md-body h2 {
+  margin: 10px 0 10px 3px;
+  color: #383838;
+  position: relative;
+}
+.md-body h2::before {
+  content: "#";
+  color: #6fa3ef;
+  position: absolute;
+  left: -1rem;
+  top: 2px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.md-body p {
+  line-height: 1.7;
+}
+.md-body pre {
+  margin: 0 -0.5em;
+}
+.md-body pre code {
+  padding: 0.5em 1em;
+  font-family: "Source Code Variable";
+}

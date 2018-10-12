@@ -1,27 +1,41 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-class App extends Component {
+import PropsRoute from './components/PropsRoute';
+import Home from './views/home.js';
+import Article from './views/Article';
+import NotFound from './views/NotFound';
+import RainBow from './components/RainBow';
+import Cover from './components/LoadingCover.js';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false
+    }
+  }
+
+  handleLoading = (value) => {
+    this.setState({ loading: value });
+  }
+
   render() {
+    const { loading } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <Router>
+        <div style={{position: 'relative'}}>
+          <RainBow />
+          <Switch>
+            <PropsRoute exact path="/" component={Home} loading={this.handleLoading}/>
+            <PropsRoute path="/tags" component={Home} />
+            <Route path="/article" component={Article} />
+            <Route component={NotFound} />
+          </Switch>
+          <Cover show={loading}/>
+        </div>
+      </Router>
+    )
   }
 }
 

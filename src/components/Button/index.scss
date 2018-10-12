@@ -1,0 +1,106 @@
+@import "./variables.scss";
+.#{$class-prefix} {
+  box-sizing: border-box;
+  margin-left: 10px;
+  padding: 9px 15px;
+  outline: none;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 32px;
+  line-height: 1;
+  user-select: none;
+  color: rgba(0, 0, 0, .6);
+  font-weight: 500;
+  background-color: $default-bgcolor;
+  transition: all .1s linear;
+  text-align: center;
+  &:hover {
+    background-color: $default-hover-bgcolor;
+  }
+  &:active {
+    background-color: $default-active-bgcolor;
+  }
+  &:disabled {
+    cursor: default;
+    background-color: $default-disabled-bgcolor;
+    color: rgba(255, 255, 255, .8);
+  }
+  .iconfont {
+    margin-right: 4px;
+    display: inline-block;
+  }
+  .icon-loading {
+    animation: rotating 2s linear infinite;
+  }
+  // -----------size --------------
+  &-sm {
+    padding: 6px 10px;
+    height: 26px;
+  }
+  &-lg {
+    padding: 12px 20px;
+    height: 40px;
+    font-size: 16px;
+    .iconfont {
+      // font-size: 16px;
+      margin-right: 5px;
+    }
+  }
+  // size end
+  // shap
+  &-circle {
+    padding: 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    vertical-align: middle;
+    .iconfont {
+      font-size: 25px;
+      margin: 0 auto;
+    }
+  }
+  // shap end
+  // type
+  &-primary {
+    background-color: $primary-bgcolor;
+    color: #fff;
+    &:hover {
+      background-color: $primary-hover-bgcolor;
+    }
+    &:active {
+      background-color: $primary-active-bgcolor;
+    }
+    &:disabled {
+      background-color: $primary-disabled-bgcolor;
+    }
+  }
+
+  &-danger {
+    background-color: $danger-bgcolor;
+    color: #fff;
+    &:hover {
+      background-color: $danger-hover-bgcolor;
+    }
+    &:active {
+      background-color: $danger-active-bgcolor;
+    }
+    &:disabled {
+      background-color: $danger-disabled-bgcolor;
+    }
+  }
+  &-round {
+    .iconfont {
+      margin: 0;
+    }
+  }
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
