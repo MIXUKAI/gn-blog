@@ -2,6 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+const StyledLinkTag = styled(Link)`
+  color: #44613E;
+  margin: 0 5px;
+  border-bottom: 1px solid #44613E;
+  &::before {
+    content: '#'
+  }
+  &:hover {
+    border-color: #351565;
+    border-width: 2px;
+  }
+`
 
 const ArticleItem = ({time, title, summary, id, tag }) => {
   return (
@@ -9,7 +21,7 @@ const ArticleItem = ({time, title, summary, id, tag }) => {
       <div className="row" style={{position: 'relative'}}>
         <CreateAt>{ time }</CreateAt>
         { tag.length && <i className="iconfont">&#xe715;</i> }
-        { tag.map((item, index) => <Tag key={index}>{item}</Tag>) }
+        {tag.map((item, index) => <StyledLinkTag key={index} to={`/tags/${item}`}>{item}</StyledLinkTag>) }
       </div>
       <Link to={{pathname: `/article/${id}`}}>
         <Title><span>{ title }</span></Title>
@@ -69,18 +81,4 @@ const Title = styled.h2`
 const Summary = styled.p`
   margin: 0;
   font-size: 14px;
-`;
-
-const Tag = styled.a`
-  color: #44613E;
-  margin: 0 5px;
-  border-bottom: 1px solid #44613E;
-  /* text-decoration: underline !important; */
-  &::before {
-    content: '#'
-  }
-  &:hover {
-    border-color: #351565;
-    border-width: 2px;
-  }
 `;

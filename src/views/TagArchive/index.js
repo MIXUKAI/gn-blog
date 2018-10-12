@@ -15,7 +15,8 @@ class TagArchive extends React.Component {
     }
   }
 
-  fetchAllArticles = (url) => {
+  fetchAllArticles = () => {
+    const url = `${baseApiUrl}/article/all`;
     axios.get(url)
       .then(res => {
         const data = res.data;
@@ -25,15 +26,35 @@ class TagArchive extends React.Component {
       })
   }
 
-  componentDidUpdate() {
+  getArticleByTagName = (tagname) => {
+    const url = `${baseApiUrl}/article/tag/${tagname}`;
+    axios.get(url)
+      .then(res => {
+        const data = res.data;
+        console.log(data);
+        this.setState({ articles: data });
+      })
+      .catch(err => console.log(err));
+  }
+
+  componentDidUpdate(prevProps) {
     console.log('did update');
-    console.log(this.props.match.params.id);
+    if (prevProps.match.params.name !== this.props.match.params.name) {
+      if (this.props.match.params.name === void 0) {
+        this.fetchAllArticles();
+        return;
+      }
+      this.getArticleByTagName(this.props.match.params.name);
+    }
   }
 
   componentDidMount() {
     console.log('did mount')
-    const articleurl = `${baseApiUrl}/article/all`;
-    this.fetchAllArticles(articleurl);
+    if (this.props.match.params.name === void 0) {
+      this.fetchAllArticles();
+      return;
+    }
+    this.getArticleByTagName(this.props.match.params.name);
   }
   
   render() {

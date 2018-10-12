@@ -29,7 +29,7 @@ class Home extends React.Component {
               )}
             />
             <Route exact path="/tags" component={TagArchives} />
-            <Route path="/tags/:id" component={TagArchives} />
+            <Route path="/tags/:name" component={TagArchives} />
           </Switch>
         </div>
       </Layout>
