@@ -18,7 +18,7 @@ const Li = styled.li`
   a {
     margin-left: 8px;
     text-decoration: none;
-    color: #666;
+    color: #61b2a7;
     &:hover {
       color: #5fa3ef;
     }

@@ -8,6 +8,7 @@ import '../../styles/atom-one-light.css';
 import baseApiURL from '../../utils/api';
 import TagList from './components/TagList'
 import Anchor from './components/Anchor';
+import Top from './components/Top';
 import Layout from '../layout/ArticleLayout';
 import myMarked from '../../utils/my_marked';
 import getHeaders from '../../utils/getHeaders';
@@ -67,6 +68,7 @@ class Article extends Component {
         <div style={{ position: 'relative', width: 930, textAlign: 'right' }}>
         <Anchor content={this.state.anchorInfos}/>
         </div>
+        <Top />
       </Layout>
     )
   };

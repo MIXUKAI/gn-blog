@@ -1,11 +1,11 @@
 
 @font-face {font-family: "iconfont";
-  src: url('../assets/fonts/iconfont.eot?t=1539059475014'); /* IE9*/
-  src: url('../assets/fonts/iconfont.eot?t=1539059475014#iefix') format('embedded-opentype'),
+  src: url('../assets/fonts/iconfont.eot?t=1539337868469'); /* IE9*/
+  src: url('../assets/fonts/iconfont.eot?t=1539337868469#iefix') format('embedded-opentype'),
   /* IE6-IE8 */
-  url('../assets/fonts/iconfont.ttf?t=1539059475014') format('truetype'),
+  url('../assets/fonts/iconfont.ttf?t=1539337868469') format('truetype'),
   /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('../assets/fonts/iconfont.svg?t=1539059475014#iconfont') format('svg');
+  url('../assets/fonts/iconfont.svg?t=1539337868469#iconfont') format('svg');
   /* iOS 4.1- */
 }
 
@@ -28,6 +28,8 @@
 .icon-bokeblogger3:before { content: "\e722"; }
 
 .icon-guanyuwomen:before { content: "\e629"; }
+
+.icon-fanhuidingbu:before { content: "\e633"; }
 
 .icon-github:before { content: "\e691"; }
 
