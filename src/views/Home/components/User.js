@@ -7,7 +7,7 @@ import Avatar from './Avatar';
 import Links from './Links';
 
 const User = styled.div`
-  width: 100%;
+  width: 230px;
   text-align: center;
 `;
 
@@ -35,7 +35,7 @@ const Name = styled.h2`
 
 export default () => {
   return (
-    <User>
+    <User className="user-container">
       <Avatar src={avatarSrc} />
       <Name>Guanine</Name>
       <IconList>

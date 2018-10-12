@@ -48,3 +48,23 @@
   opacity: 1;
   transition: opacity 600ms linear;
 }
+
+@media screen and (max-width: 680px) {
+  #root .home-wrapper {
+    flex-direction: column;
+  }
+  .user-container {
+    width: 100%;
+  }
+  .link-list {
+    margin: 20px 0;
+  }
+  .link-list li {
+    padding: 10px 5px;
+    display: inline;
+    font-size: 15px;
+  }
+  .link-list li i.iconfont{
+    margin-right: 5px;
+  }
+}

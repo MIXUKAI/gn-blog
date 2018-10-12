@@ -33,10 +33,10 @@ const Links = styled.ul`
 `;
 
 export default () => (
-  <Links>
+  <Links className="link-list">
     <StyledLink to="/"><li><Icon icon="icon-home" />首页</li></StyledLink>
     <StyledLink to="/tags"><li><Icon icon="icon-fenlei-copy" />分类</li></StyledLink>
-    <li><a href="#"><Icon icon="icon-guanyuwomen" />关于</a></li>
-    <li><a href="#"><Icon icon="icon-guanlizhongxin"/>管理</a></li>
+    <StyledLink to="/about"><li><Icon icon="icon-guanyuwomen" />关于</li></StyledLink>
+    <StyledLink to="/admin"><li><Icon icon="icon-guanlizhongxin" />管理</li></StyledLink>
   </Links>
 );

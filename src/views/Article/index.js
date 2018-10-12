@@ -100,9 +100,3 @@ const Content = styled.div`
     margin: 12px 10px;
   }
 `;
-
-const AnchorStyle = {
-  position: 'absolute',
-  top: 100,
-  right: '-100px'
-};

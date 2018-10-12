@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
   return (
     [ // TODO: 为什么这里一定要添加key
       <div style={{ padding: '40px 0', backgroundColor: '#F6F9FC' }} key='home-container'>
-        <Wrapper>
+        <Wrapper className="home-wrapper">
           {children}
         </Wrapper>
       </div>
