@@ -16,8 +16,8 @@ const Wrapper = styled.div`
 const Layout = ({ children }) => {
   return (
     [
-      <Header />,
-      <Wrapper>
+      <Header key="header"/>,
+      <Wrapper key="article-body">
         <div className="body">
           {children}
         </div>
