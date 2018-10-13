@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
-const Tag = styled.a`
+const Tag = styled(Link)`
   display: inline-block;
   height: 22px;
   line-height: 22px;
@@ -46,4 +47,4 @@ const Tag = styled.a`
   }
 `
 
-export default ({children, href}) => <Tag href={href}>{ children }</Tag>
+export default ({children, href}) => <Tag to={`/tags/${children}`}>{ children }</Tag>

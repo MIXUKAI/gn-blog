@@ -16,8 +16,10 @@ class HomeArticles extends Component {
     const state = popState.state;
     // 存在的话
     if (state) {
-      const page = state.state.page;
-      this.fetchData(page);
+      if (state.state) {
+        const page = state.state.page;
+        this.fetchData(page);
+      }
     }
   }
 

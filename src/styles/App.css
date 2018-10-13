@@ -68,6 +68,9 @@
 }
 
 @media screen and (max-width: 680px) {
+  #root .home-container{
+    padding-top: 0 !important;
+  }
   #root .home-wrapper {
     flex-direction: column;
   }
