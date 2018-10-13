@@ -17,17 +17,14 @@ class Article extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      content: '',
-      title: '',
-      createAt: '',
-      tags: [],
-      body: '',
+      article: {},
       anchorInfos: []
     }
   }
 
   parseMardown() {
-    return { __html: myMarked(this.state.body)};
+    const { md_content='' } = this.state.article;
+    return { __html: myMarked(md_content)};
   }
 
   // 在内容渲染完毕之后去获取各个标题
@@ -43,30 +40,42 @@ class Article extends Component {
     axios.get(url)
       .then(res => {
         this.props.loading(false);
-
         const data = res.data;
-        this.setState({
-          title: data.title,
-          createAt: data.createAt,
-          tags: data.tags,
-          body: data.md_content
-        }, this.getAnchorInfos)
+        const { title, createAt, tags, md_content } = data;
+        const article = { title, createAt, tags, md_content };
+        this.setState({ article }, this.getAnchorInfos);
       })
       .catch(err => console.log(err));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const id = this.props.match.params.id;
+    sessionStorage.setItem(`article_${id}`, JSON.stringify(this.state.article));
+    sessionStorage.setItem(`article_date_${id}`, Date.now());
+  }
+
+  fetchData = (articleId) => {
+    const article = sessionStorage.getItem(`article_${articleId}`);
+    if (article) {
+      this.setState({ article: JSON.parse(article) });
+    } else {
+      this.getArticleById(articleId);
+    }
   }
 
   // 挂载完毕ajax获取数据
   componentDidMount() {
     const id = this.props.match.params.id;
-    this.getArticleById(id);
+    this.fetchData(id);
   }
 
   render() {
+    const { title='', createAt='', tags=[] } = this.state.article;
     return (
       <Layout>
-        <Title className="article-title">{ this.state.title }</Title>
-        <ArticleData>发布于：<span>{ this.state.createAt }</span></ArticleData>
-        <TagList tags={this.state.tags}/>
+        <Title className="article-title">{ title }</Title>
+        <ArticleData>发布于：<span>{ createAt }</span></ArticleData>
+        <TagList tags={ tags }/>
         <Content dangerouslySetInnerHTML={ this.parseMardown() } className="md-body">
         </Content>
         <div style={{ position: 'relative', width: 930, textAlign: 'right' }}>

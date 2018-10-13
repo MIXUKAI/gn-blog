@@ -40,7 +40,7 @@ class HomeArticles extends Component {
 
   // 获取数据，从缓存或者ajax请求
   fetchData = (targetPage) => {
-    const articles = sessionStorage.getItem(`articles${targetPage}`);
+    const articles = sessionStorage.getItem(`articlePage${targetPage}`);
     if (!articles) {
       this.getArticlesfromDB(targetPage);
     } else {
@@ -62,7 +62,7 @@ class HomeArticles extends Component {
     window.addEventListener('popstate', this.handlePopState);
 
     const page = parseInt(this.props.match.params.page);
-    const articles = sessionStorage.getItem(`articles${page}`);
+    const articles = sessionStorage.getItem(`articlePage${page}`);
     // 不存在的话发送请求
     if (!articles) {
       this.getArticlesfromDB(page);
@@ -72,17 +72,17 @@ class HomeArticles extends Component {
     // 注意这里不能pushstate，之前直接调用this.fetchData(page), 组件重新挂载的时候就pushState，造成了bug
   }
 
-  storeSessionStorage = (targetState) => {
-    const { page, articles } = targetState;
-    sessionStorage.setItem(`articles${page}`, JSON.stringify(articles));
-    sessionStorage.setItem(`articlesDate${page}`, Date.now());
-  };
+  // storeSessionStorage = (targetState) => {
+  //   const { page, articles } = targetState;
+  //   sessionStorage.setItem(`articles${page}`, JSON.stringify(articles));
+  //   sessionStorage.setItem(`articlesDate${page}`, Date.now());
+  // };
 
   componentDidUpdate(prevProps, prevState) {
     const nowpage = this.state.page;
     // TODO: 这里存储优化下？
-    sessionStorage.setItem(`articles${nowpage}`, JSON.stringify(this.state.articles));
-    sessionStorage.setItem(`articlesDate${nowpage}`, Date.now());
+    sessionStorage.setItem(`articlePage${nowpage}`, JSON.stringify(this.state.articles));
+    sessionStorage.setItem(`articlePageDate${nowpage}`, Date.now());
   }
 
   componentWillUnmount() {
