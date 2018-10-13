@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Header from '../Article/components/Header';
+import Footer from '../../components/Footer';
 
 const Wrapper = styled.div`
   position: relative;
@@ -21,7 +22,8 @@ const Layout = ({ children }) => {
         <div className="body">
           {children}
         </div>
-      </Wrapper>
+      </Wrapper>,
+      <Footer key="footer"/>
     ]
   );
 };

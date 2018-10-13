@@ -20,7 +20,11 @@ class TagArchive extends React.Component {
     axios.get(url)
       .then(res => {
         const data = res.data;
-        this.setState({ articles: data, tags: getTags(data) });
+        if (this.props.match.params.name === void 0) {
+          this.setState({ articles: data, tags: getTags(data) });
+        } else {
+          this.setState({ tags: getTags(data) });
+        }
       }).catch(err => {
         console.error(err);
       })
@@ -47,11 +51,12 @@ class TagArchive extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.match.params.name === void 0) {
-      this.fetchAllArticles();
-      return;
+    // 为了获取所有的标签
+    this.fetchAllArticles();
+    
+    if (this.props.match.params.name !== void 0) {
+      this.getArticleByTagName(this.props.match.params.name);
     }
-    this.getArticleByTagName(this.props.match.params.name);
   }
   
   render() {
