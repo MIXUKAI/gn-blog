@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 
 import ScrollToTop from './components/ScrollToTop';
 import PropsRoute from './components/PropsRoute';
@@ -24,21 +26,23 @@ class App extends React.Component {
   render() {
     const { loading } = this.state;
     return (
-      <Router>
-        <ScrollToTop>
-          <div style={{position: 'relative'}}>
-            <RainBow />
-            <Switch>
-              <PropsRoute exact path="/" component={Home} loading={this.handleLoading}/>
-              <PropsRoute path="/page" component={Home} loading={this.handleLoading}/>
-              <PropsRoute path="/tags" component={Home} />
-              <PropsRoute path="/article/:id" component={Article} loading={this.handleLoading}/>
-              <Route component={NotFound} />
-            </Switch>
-            <Cover show={loading}/>
-          </div>
-        </ScrollToTop>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <ScrollToTop>
+            <div style={{position: 'relative'}}>
+              <RainBow />
+              <Switch>
+                <PropsRoute exact path="/" component={Home} loading={this.handleLoading}/>
+                <PropsRoute path="/page" component={Home} loading={this.handleLoading}/>
+                <PropsRoute path="/tags" component={Home} />
+                <PropsRoute path="/article/:id" component={Article} loading={this.handleLoading}/>
+                <Route component={NotFound} />
+              </Switch>
+              <Cover show={loading}/>
+            </div>
+          </ScrollToTop>
+        </Router>
+      </Provider>
     )
   }
 }

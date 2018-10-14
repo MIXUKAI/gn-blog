@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchArticleById } from '../../actions/articleActions';
 
 import './styles/index.scss';
 import '../../styles/solarized-light.css';
 
-import baseApiURL from '../../utils/api';
 import TagList from './components/TagList'
 import Anchor from './components/Anchor';
 import Top from './components/Top';
@@ -17,41 +18,27 @@ class Article extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      article: {},
       anchorInfos: []
     }
   }
 
   parseMardown() {
-    const { md_content='' } = this.state.article;
+    const { md_content='' } = this.props.article;
     return { __html: myMarked(md_content)};
   }
 
-  // 在内容渲染完毕之后去获取各个标题
   getAnchorInfos = () => {
     const anchorInfos = getHeaders('md-body');
     this.setState({ anchorInfos });
   }
 
-  getArticleById = (id) => {
-    this.props.loading(true);
-
-    const url = `${baseApiURL}/article/${id}`;
-    axios.get(url)
-      .then(res => {
-        this.props.loading(false);
-        const data = res.data;
-        const { title, createAt, tags, md_content } = data;
-        const article = { title, createAt, tags, md_content };
-        this.setState({ article }, this.getAnchorInfos);
-      })
-      .catch(err => console.log(err));
-  }
-
   componentDidUpdate(prevProps, prevState) {
     const id = this.props.match.params.id;
-    sessionStorage.setItem(`article_${id}`, JSON.stringify(this.state.article));
-    sessionStorage.setItem(`article_date_${id}`, Date.now());
+    if (prevProps.article !== this.props.article) {
+      this.getAnchorInfos();
+    }
+    // sessionStorage.setItem(`article_${id}`, JSON.stringify(this.state.article));
+    // sessionStorage.setItem(`article_date_${id}`, Date.now());
   }
 
   fetchData = (articleId) => {
@@ -63,14 +50,13 @@ class Article extends Component {
     }
   }
 
-  // 挂载完毕ajax获取数据
   componentDidMount() {
     const id = this.props.match.params.id;
-    this.fetchData(id);
+    this.props.fetchArticleById(id);
   }
 
   render() {
-    const { title='', createAt='', tags=[] } = this.state.article;
+    const { title='', createAt='', tags=[] } = this.props.article;
     return (
       <Layout>
         <Title className="article-title">{ title }</Title>
@@ -87,8 +73,16 @@ class Article extends Component {
   };
 };
 
-// { position: 'relative', width: 930, textAlign: 'right' }}
-export default Article;
+Article.propTypes = {
+  fetchArticleById: PropTypes.func.isRequired,
+  article: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  article: state.article.article
+});
+
+export default connect(mapStateToProps, { fetchArticleById })(Article);
 
 const Title = styled.h1`
   margin: 15px 0;
