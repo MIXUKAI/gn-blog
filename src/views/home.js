@@ -3,8 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Layout from './layout/HomeLayout';
 
 import Side from './Home/components/Side';
-import HomeArticles from './HomeArticle';
-import TagArchives from './TagArchive';
+import Article from './HomeArticle';
+import Archive from './HomeArchive';
 
 class Home extends React.Component {
   handleLoding = (value) => {
@@ -26,11 +26,11 @@ class Home extends React.Component {
             <Route
               path="/page/:page"
               render={() => (
-                <HomeArticles loading={this.handleLoding} />
+                <Article loading={this.handleLoding} />
               )}
             />
-            <Route exact path="/tags" component={TagArchives} />
-            <Route path="/tags/:name" component={TagArchives} />
+            <Route exact path="/tags" component={Archive} />
+            <Route path="/tags/:name" component={Archive} />
           </Switch>
         </div>
       </Layout>

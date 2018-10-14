@@ -32,9 +32,7 @@ class App extends React.Component {
               <PropsRoute exact path="/" component={Home} loading={this.handleLoading}/>
               <PropsRoute path="/page" component={Home} loading={this.handleLoading}/>
               <PropsRoute path="/tags" component={Home} />
-    
-                <PropsRoute path="/article/:id" component={Article} loading={this.handleLoading}/>
-              
+              <PropsRoute path="/article/:id" component={Article} loading={this.handleLoading}/>
               <Route component={NotFound} />
             </Switch>
             <Cover show={loading}/>
