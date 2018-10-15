@@ -81,8 +81,10 @@ class HomeArticles extends Component {
   componentDidUpdate(prevProps, prevState) {
     const nowpage = this.state.page;
     // TODO: 这里存储优化下？
-    sessionStorage.setItem(`articlePage${nowpage}`, JSON.stringify(this.state.articles));
-    sessionStorage.setItem(`articlePageDate${nowpage}`, Date.now());
+    if (this.state.articles.length !== 0) {
+      sessionStorage.setItem(`articlePage${nowpage}`, JSON.stringify(this.state.articles));
+      sessionStorage.setItem(`articlePageDate${nowpage}`, Date.now());  
+    }
   }
 
   componentWillUnmount() {
