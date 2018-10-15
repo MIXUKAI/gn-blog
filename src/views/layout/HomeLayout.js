@@ -10,26 +10,29 @@ const Wrapper = styled.div`
   margin: 0 auto;
   max-width: 960px;
   min-height: 840px;
-  padding: 30px 20px 20px 20px;
+  padding: 50px 20px 20px 20px;
   overflow: hidden;
   background-color: rgba(255,255,255,1);
   box-shadow: 1px 1px 15px rgba(67,38,100,0.05);
 `;
 
-const Layout = ({ children }) => {
-  return (
-    [ // TODO: 为什么这里一定要添加key
-      <div style={{ padding: '40px 0', backgroundColor: '#F6F9FC' }} 
-        key='home-container'
-        className="home-container">
-        <Wrapper className="home-wrapper">
-          {children}
-        </Wrapper>
-      </div>
-      ,
-      <Footer key="footer" />
-    ]
-  );
-};
+class Layout extends React.Component {
+  render() {
+    const { children } = this.props;
+    return (
+      [
+        <div style={{ padding: '40px 0', backgroundColor: '#F6F9FC' }} 
+          key='home-container'
+          className="home-container">
+          <Wrapper className="home-wrapper">
+            {children}
+          </Wrapper>
+        </div>
+        ,
+        <Footer key="footer" />
+      ]
+    );
+  }
+}
 
 export default Layout;

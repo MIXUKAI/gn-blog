@@ -17,6 +17,9 @@ class TagArchive extends React.Component {
 
   fetchAllArticles = () => {
     const url = `${baseApiUrl}/article/all`;
+
+    this.props.loading(true);
+    
     axios.get(url)
       .then(res => {
         const data = res.data;
@@ -25,6 +28,7 @@ class TagArchive extends React.Component {
         } else {
           this.setState({ tags: getTags(data) });
         }
+        this.props.loading(false);
       }).catch(err => {
         console.error(err);
       })
@@ -32,10 +36,12 @@ class TagArchive extends React.Component {
 
   getArticleByTagName = (tagname) => {
     const url = `${baseApiUrl}/article/tag/${tagname}`;
+    this.props.loading(true);
     axios.get(url)
       .then(res => {
         const data = res.data;
         this.setState({ articles: data });
+        this.props.loading(false);
       })
       .catch(err => console.log(err));
   }
@@ -51,7 +57,7 @@ class TagArchive extends React.Component {
   }
 
   componentDidMount() {
-    // 为了获取所有的标签
+    
     this.fetchAllArticles();
     
     if (this.props.match.params.name !== void 0) {

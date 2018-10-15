@@ -1,3 +1,3 @@
-const baseApiURL = 'http://127.0.0.1:8080/api';
+const baseApiURL = 'http://134.175.5.155:8080/api';
 
 export default baseApiURL;

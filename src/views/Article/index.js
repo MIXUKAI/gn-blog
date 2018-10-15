@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import './styles/index.scss';
+import '../../styles/markdown.scss';
 import '../../styles/solarized-light.css';
 
 import baseApiURL from '../../utils/api';
 import TagList from './components/TagList'
+import Title from './components/Title';
 import Anchor from './components/Anchor';
 import Top from './components/Top';
 import Layout from '../layout/ArticleLayout';
@@ -57,13 +58,12 @@ class Article extends Component {
   fetchData = (articleId) => {
     const article = sessionStorage.getItem(`article_${articleId}`);
     if (article) {
-      this.setState({ article: JSON.parse(article) });
+      this.setState({ article: JSON.parse(article) }, this.getAnchorInfos);
     } else {
       this.getArticleById(articleId);
     }
   }
 
-  // 挂载完毕ajax获取数据
   componentDidMount() {
     const id = this.props.match.params.id;
     this.fetchData(id);
@@ -73,13 +73,15 @@ class Article extends Component {
     const { title='', createAt='', tags=[] } = this.state.article;
     return (
       <Layout>
-        <Title className="article-title">{ title }</Title>
-        <ArticleData>发布于：<span>{ createAt }</span></ArticleData>
-        <TagList tags={ tags }/>
-        <Content dangerouslySetInnerHTML={ this.parseMardown() } className="md-body">
-        </Content>
+        <div>
+          <Title className="article-title">{ title }</Title>
+          <ArticleData>发布于：<span>{ createAt }</span></ArticleData>
+          <TagList tags={ tags }/>
+          <Content dangerouslySetInnerHTML={ this.parseMardown() } className="md-body">
+          </Content>
+        </div>
         <div style={{ position: 'relative', width: 930, textAlign: 'right' }}>
-        <Anchor content={this.state.anchorInfos}/>
+          <Anchor content={this.state.anchorInfos} match={this.props.match}/>
         </div>
         <Top />
       </Layout>
@@ -87,14 +89,7 @@ class Article extends Component {
   };
 };
 
-// { position: 'relative', width: 930, textAlign: 'right' }}
 export default Article;
-
-const Title = styled.h1`
-  margin: 15px 0;
-  font-size: 21px;
-  font-weight: normal;
-`;
 
 const ArticleData = styled.p`
   font-size: 12px;

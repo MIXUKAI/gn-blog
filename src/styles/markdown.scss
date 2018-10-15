@@ -1,18 +1,14 @@
-.article-title {
-  font-size: 28px;
-  font-weight: 500;
-  color: #333;
-}
 .md-body {
   h2,h3,h4,h5,h6 {
     margin: 10px 0 10px 3px;
     color: #383838;
     position: relative;
+    font-weight: 600;
   }
 
   h2::before {
     content: "#";
-    color: #6fa3ef;
+    color:#2c8bbc;
     position: absolute;
     left: -1rem;
     top: 2px;
@@ -32,14 +28,7 @@
     }
   }
 
-  code {
-    background: rgba(0, 0, 0, .05);
-    padding: 3px 4px;
-    margin: 0 2px;
-  }
-
   strong {
-    background-color: rgba(250, 208, 0, .4);
     padding: .3em;
   }
 
@@ -61,7 +50,7 @@
 
   blockquote {
     border-left: 5px solid rgb(44, 139, 188);
-    background: rgba(0, 0, 0, .05);
+    // background: rgba(0, 0, 0, .05);
     padding: 15px;
     margin: 13px 0;
   }
@@ -73,3 +62,8 @@
   }
 }
 
+code {
+  background: rgba(0, 0, 0, .05);
+  padding: 3px 4px;
+  margin: 0 2px;
+}

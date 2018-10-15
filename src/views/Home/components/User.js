@@ -1,31 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import avatarSrc from '../../../assets/images/avatar2.png';
 
 import Icon from '../../../components/Icon';
 import Avatar from './Avatar';
 import Links from './Links';
 
-const User = styled.div`
-  width: 230px;
-  text-align: center;
-`;
-
-const IconList = styled.ul`
-  li {
-    display: inline-block;
-    margin: 5px;
-  }
+const IconList = styled.div`
   &::after {
     content: '';
     display: block;
     margin: 0 auto;
     margin-top: 8px;
     width: 70%;
-    height: 1px;
-    background-color: #2c3e50;
+    height: 2px;
+    background-color: #3662A2;
   }
 `;
+
+
 
 const Name = styled.h2`
   margin: 10px 0 5px 0;
@@ -35,15 +27,14 @@ const Name = styled.h2`
 
 export default () => {
   return (
-    <User className="user-container">
-      <Avatar src={avatarSrc} />
+    <div className="user-container">
+      <Avatar src="https://avatars3.githubusercontent.com/u/23211153?s=400&u=d51b9822ad0efab99740f2999222de455d7fe8f6&v=4"/>
       <Name>Guanine</Name>
+      <p style={{color:"#2F3421", padding:'5px 0'}}>伪前端，真肥宅</p>
+      <p style={{color:"#2F3421",  padding:'5px 0 10px'}}>今天也要加油鸭</p>
       <IconList>
-        <li><Icon icon="icon-bokeblogger3" circle /></li>
-        <li><Icon icon="icon-github" circle /></li>
-        <li><Icon icon="icon-youxiang1" circle /></li>
       </IconList>
       <Links />
-    </User>
+    </div>
   );
 };

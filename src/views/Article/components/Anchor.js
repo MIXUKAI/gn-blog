@@ -25,47 +25,24 @@ const Li = styled.li`
   }
 `;
 
-const style = {
-  position: 'fixed',
-  top: 180,
-  // width: 200,
-  display: 'inline-block',
-  textAlign: 'left'
-}
-
-class Anchor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: []
-    }
-  }
-
-  generateList(arr) {
-    return arr.map((item) => {
-      const { id, body, tagName } = item;
-      return (
-        <Li className={ tagName === 'H2' ? 'h2-Li' : 'h3-li' } key={id}>
-          <a href={'#'+id}>{ body }</a>
-        </Li>
-      );
-    });
-  }
-
-  componentWillReceiveProps(nextPorps) {
-    const result = this.generateList(nextPorps.content);
-    this.setState({ list: result });
-  }
-
-  render() {
-    return (
-      <div style={style} >
-        <ul style={{ borderLeft: '1px solid #ddd' }}>
-          { this.state.list }
-        </ul>
-      </div>
-    );
-  }
+const Anchor = (props) => {
+  const { content } = props;
+  return (
+    <div style={{ position: 'fixed',top: 180,display: 'inline-block',textAlign: 'left' }} >
+      <ul style={{ borderLeft: '1px solid #ddd' }}>
+        {
+          content.map((item) => {
+            const { id, body, tagName } = item;
+            return (
+              <Li className={ tagName === 'H2' ? 'h2-Li' : 'h3-li' } key={id}>
+                <a href={`#${id}`}>{ body }</a>
+              </Li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  );
 }
 
 

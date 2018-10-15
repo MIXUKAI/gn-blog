@@ -55,8 +55,6 @@
 }
 
 .nav-ul {
-  /* background-color: red; */
-  /* line-height: 65px; */
   display: flex;
   line-height: 44px;
   margin-right: 50px;
@@ -65,6 +63,37 @@
   display: inline-block;
   padding: 0 15px;
   margin: 0 15px;
+}
+
+.user-container {
+  width: 220px;
+  text-align: center;
+}
+
+//  user aside
+.link-list {
+  padding: 0 20px;
+  margin-top: 10px;
+  width: 100%;
+  li {
+    padding: 10px 20px 10px 30px;
+    text-align: left;
+    width: 100%;
+    color: #3662A2;
+    a {
+      display: block;
+      width: 100%;
+      color: #111;
+      text-decoration: none;
+    }
+    i {
+      margin-right: 28px;
+      font-size: 20px;
+    }
+    &:hover {
+      background-color: rgba(0, 0, 0, .1)
+    }
+  }
 }
 
 @media screen and (max-width: 680px) {
@@ -93,5 +122,38 @@
   }
   .link-list li i.iconfont{
     margin-right: 5px;
+    font-size: 20px;
+  }
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+
+  0%,
+  100% {
+    transform: rotate(0)
+  }
+
+  20%,
+  60% {
+    transform: rotate(-25deg)
+  }
+
+  40%,
+  80% {
+    transform: rotate(10deg)
+  }
+}
+
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation: none
+  }
+
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
   }
 }

@@ -20,7 +20,7 @@ const ArticleItem = ({time, title, summary, id, tag }) => {
     <Item>
       <div className="row" style={{position: 'relative'}}>
         <CreateAt>{ time }</CreateAt>
-        { tag.length && <i className="iconfont">&#xe715;</i> }
+        { tag.length && <i className="iconfont" style={{verticalAlign:'bottom'}}>&#xe715;</i> }
         {tag.map((item, index) => <StyledLinkTag key={index} to={`/tags/${item}`}>{item}</StyledLinkTag>) }
       </div>
       <Link to={{pathname: `/article/${id}`}}>
