@@ -15,18 +15,40 @@ class TagArchive extends React.Component {
     }
   }
 
-  fetchAllArticles = () => {
-    const url = `${baseApiUrl}/article/all`;
+  storeTags = (tags) => {
+    if (this.state.tags.length !== 0) {
+      sessionStorage.setItem('tags', JSON.stringify(tags));
+      sessionStorage.setItem('tagsDate', Date.now());
+    }
+  }
 
+  fetchAllTags = () => {
+    const url = `${baseApiUrl}/article/all`;
     this.props.loading(true);
-    
     axios.get(url)
       .then(res => {
         const data = res.data;
-        if (this.props.match.params.name === void 0) {
-          this.setState({ articles: data, tags: getTags(data) });
+        const tags = getTags(data);
+        this.setState({ tags }, () => this.storeTags(tags));
+        this.props.loading(false);
+      }).catch(err => {
+        console.error(err);
+      })
+  }
+
+  fetchAllArticles = () => {
+    const url = `${baseApiUrl}/article/all`;
+    this.props.loading(true);
+    axios.get(url)
+      .then(res => {
+        const data = res.data;
+        this.setState({ articles: data });
+        if (sessionStorage.getItem('tags')) {
+          const tags = JSON.parse(sessionStorage.getItem('tags'));
+          this.setState({ tags });
         } else {
-          this.setState({ tags: getTags(data) });
+          const tags = getTags(data);
+          this.setState({ tags }, () => this.storeTags(tags));
         }
         this.props.loading(false);
       }).catch(err => {
@@ -47,6 +69,7 @@ class TagArchive extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+
     if (prevProps.match.params.name !== this.props.match.params.name) {
       if (this.props.match.params.name === void 0) {
         this.fetchAllArticles();
@@ -57,11 +80,14 @@ class TagArchive extends React.Component {
   }
 
   componentDidMount() {
-    
-    this.fetchAllArticles();
-    
-    if (this.props.match.params.name !== void 0) {
-      this.getArticleByTagName(this.props.match.params.name);
+    const tagName = this.props.match.params.name;
+    if (tagName !== void 0) {
+      if (!sessionStorage.getItem('tags')) {
+        this.fetchAllTags();
+      }
+      this.getArticleByTagName(tagName);
+    } else {
+      this.fetchAllArticles();
     }
   }
   

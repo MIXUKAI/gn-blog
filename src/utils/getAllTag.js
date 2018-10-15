@@ -1,14 +1,8 @@
 function getTags(data) {
-  const result = [];
-  data.forEach(item => {
-    const tags = item.tags;
-    tags.forEach(tag => {
-      if (result.indexOf(tag) === -1) {
-        result.push(tag);
-      }
-    })
-  });
-  return result;
+  const allTags = data.reduce((prev, cur) => {
+    return prev.concat(cur.tags);
+  },[]);
+  return [...new Set(allTags)];
 }
 
 export default getTags;
