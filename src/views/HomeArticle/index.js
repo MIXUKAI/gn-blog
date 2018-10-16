@@ -35,8 +35,6 @@ class HomeArticles extends Component {
         // TODO: 现在是为了效果，以后改掉
         if (res.data.length) {
           this.setState({ articles: res.data, page: targetPage });
-        } else {
-          window.alert('meiyou shujul');
         }
         this.props.loading(false);
       });

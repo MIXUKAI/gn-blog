@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Icon from '../../../components/Icon';
 import Avatar from './Avatar';
 import Links from './Links';
 

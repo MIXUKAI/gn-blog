@@ -8,7 +8,7 @@ const ItemWrap = styled.li`
   list-style: square;
 `
 const StyledLink = styled(Link)`
-  color: #3662A2;
+  color: #337ab7;
   text-decoration: none;
   &:hover {
     text-decoration: underline;

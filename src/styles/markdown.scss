@@ -54,11 +54,10 @@
   }
 
   blockquote {
-    border-left: 4px solid rgb(44, 139, 188);
-    // background: rgba(0, 0, 0, .05);
     padding: 15px;
-    margin: 13px 0;
-    margin-left: 4px;
+    margin: 13px 10px;
+    border-left: 5px solid #eee;
+    color: gray
   }
   a {
     color: #1fa3ef;

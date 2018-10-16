@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Header from '../Article/components/Header';
 import BottomBar from '../Article/components/BottomBar';
 import Footer from '../../components/Footer';
 
