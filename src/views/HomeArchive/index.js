@@ -82,8 +82,11 @@ class TagArchive extends React.Component {
   componentDidMount() {
     const tagName = this.props.match.params.name;
     if (tagName !== void 0) {
-      if (!sessionStorage.getItem('tags')) {
+      const tags = sessionStorage.getItem('tags');
+      if (!tags) {
         this.fetchAllTags();
+      } else {
+        this.setState({tags: JSON.parse(tags)});
       }
       this.getArticleByTagName(tagName);
     } else {
