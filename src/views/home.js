@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import baseApiUrl from '../utils/api';
 import Side from './Home/components/Side';
+import About from './About';
 import Article from './HomeArticle';
 import Archive from './HomeArchive';
 import PropsRoute from '../components/PropsRoute';
@@ -47,6 +48,7 @@ class Home extends React.Component {
             <PropsRoute path="/page/:page" loading={this.handleLoding} component={Article}/>
             <PropsRoute exact path="/tags" tagData={tags} loading={this.handleLoding} component={Archive}/>
             <PropsRoute path="/tags/:name" tagData={tags} loading={this.handleLoding} component={Archive}/>
+            <Route path="/about" component={About}/>
           </Switch>
         </div>
       </Layout>

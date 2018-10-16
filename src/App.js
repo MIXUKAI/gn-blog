@@ -30,6 +30,7 @@ class App extends React.Component {
             <RainBow />
             <Switch>
               <PropsRoute exact path="/" component={Home} loading={this.handleLoading} />
+              <Route path="/about" component={Home} />
               <PropsRoute path="/page" component={Home} loading={this.handleLoading} />
               <PropsRoute path="/tags" component={Home} loading={this.handleLoading} />
               <PropsRoute path="/article/:id" component={Article} loading={this.handleLoading}/>
