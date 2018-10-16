@@ -97,7 +97,7 @@ class HomeArticles extends Component {
     const { articles, page } = this.state;
     return (
       <div>
-        <ArticleList articles={articles} />
+        <ArticleList data={articles} />
         <Pagination next={this.handleNext} prev={this.handlePrev} style={{ paddingTop: 20, overflow: 'hidden' }} page={page} />
       </div>
     );

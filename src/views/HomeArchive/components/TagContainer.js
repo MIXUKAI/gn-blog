@@ -1,19 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Tag from './Tag';
 
 const TagContainer = (props) => {
-  const { data } = props;
   return (
     <div style={{display: 'flex', flexWrap: 'wrap'}}>
-      <Tag>Show All</Tag>
+      <Tag id="all">Show All</Tag>
       {
-        data.map(item => 
-          <Tag key={item} id={item}>{ item }</Tag>
+        props.data.map(item => 
+          <Tag key={item}>{ item }</Tag>
         )
       }
     </div>
   );
+}
+
+TagContainer.propTypes = {
+  data: PropTypes.array.isRequired
 }
 
 export default TagContainer;

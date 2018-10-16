@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledLink = styled(Link)`
   display: inline-block;
-  height: 27px;
-  line-height: 24px;
+  height: 25px;
+  line-height: 20px;
   position: relative;
   font-size: 14px;
   margin: 10px 12px;
@@ -24,12 +25,12 @@ const StyledLink = styled(Link)`
     height: 0;
     border-color: transparent #6fa3ef transparent transparent;
     border-style: solid;
-    border-width: 15px 12px 12px 0;
+    border-width: 13px 12px 12px 0;
   }
   &:after {
     content: "";
     position: absolute;
-    top: 12px;
+    top: 11px;
     left: 0;
     width: 4px;
     height: 4px;
@@ -48,19 +49,18 @@ const StyledLink = styled(Link)`
 `
 
 const Tag = (props) => {
-  const { id, children } = props;
+  const { children } = props;
   return (
     <StyledLink 
-      to={`/tags/${id}`}
-      {...props}
+      to={children === 'Show All' ? `/tags/` : `/tags/${children}`}
     >
       { children }
     </StyledLink>
   );
 };
 
-Tag.defaultProps = {
-  id: ''
+Tag.propTypes = {
+  children: PropTypes.string.isRequired
 }
 
 export default Tag;

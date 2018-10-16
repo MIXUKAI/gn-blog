@@ -1,0 +1,43 @@
+.article-item {
+  position: relative;
+  padding: 20px;
+  color: #44613E;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: box-shadow .3s ease-in;
+  &:hover {
+    background-color: rgb(246, 249, 252);
+  }
+  a {
+    text-decoration: none;
+  }    
+  .create-at {
+    padding-left: 8px;
+    border-left: 5px solid #588CF8;
+    font-size: 14px;
+    color: #588CF8;
+    margin-right: 10px;
+  }
+  .item-title {
+    margin: 16px 0 15px 0;
+    font-size: 20px;
+    font-family: 'Garamond', 'Georgia', serif;
+    font-weight: bold;
+    color: #2c3e50;
+    span {
+      padding-bottom: 2px;
+    }
+  }
+  .item-summary {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .read-more {
+    color: #588CF8;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Tag from './Tag';
+import Tag from '../../HomeArchive/components/Tag';
 
 const TagList = (props) => {
   const { tags } = props;

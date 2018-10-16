@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Item from './Item';
+import Li from './ListLi';
 
 const Year = styled.h2`
   font-size: 28px;
@@ -19,9 +19,9 @@ const YearBlock = ({ year, data }) => {
       <UlWrap>
         { 
           data.map(item => 
-            <Item key={item._id} time={item.createAt} id={item._id}>
+            <Li key={item._id} time={item.createAt} id={item._id}>
               { item.title }
-            </Item>
+            </Li>
           ) 
         }
       </UlWrap>

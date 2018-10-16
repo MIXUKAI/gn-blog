@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import './home.css';
 import Footer from '../../components/Footer';
 
 const Wrapper = styled.div`

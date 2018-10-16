@@ -1,39 +1,23 @@
-import React, { Component }from 'react';
-import ArticleItem from './ArticleItem';
+import React from 'react';
+import PropTypes from 'prop-types';
+import ArticleItem from './ArticleItem/ArticleItem';
 import moment from 'moment';
 
-function generateList(arr) {
-  return arr.map((item) => {
+const ArticleList = (props)  => {
+  const articleItems = props.data.map(item => {
     const { _id, title, createAt, description, tags } = item;
     const formatTime = moment(createAt).format('YYYY-MM-DD');
     return (
       <ArticleItem key={_id} title={title} time={formatTime} summary={description} id={_id} tag={tags} />
     );
   });
+  return (
+    <div>
+      { articleItems }
+    </div>
+  )
 }
-
-class ArticleList extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      list: []
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.articles !== this.props.articles) {
-      const result = generateList(this.props.articles);
-      this.setState({ list: result });
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        { this.state.list }
-      </div>
-    )
-  }
+ArticleList.propTypes = {
+  data: PropTypes.array.isRequired
 }
-
 export default ArticleList;

@@ -4,7 +4,6 @@ import moment from 'moment';
 function groupDataByYear(data) {
   const result = [];
   if (data.length) {
-
     let block = {};
     block.year = moment(data[0].createAt).format('YYYY');
     block.data = [];

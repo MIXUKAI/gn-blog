@@ -43,7 +43,7 @@ class Pagination extends React.Component {
 
 Pagination.propTypes = {
   next: PropTypes.func.isRequired,
-  previous: PropTypes.func.isRequired,
+  prev: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired
 }
 

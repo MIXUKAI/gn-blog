@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 
-import '../../styles/markdown.scss';
+import './Article.scss';
 import '../../styles/solarized-light.css';
 
 import baseApiURL from '../../utils/api';
 import TagList from './components/TagList'
-import Title from './components/Title';
 import Anchor from './components/Anchor';
 import Layout from '../layout/ArticleLayout';
 import myMarked from '../../utils/my_marked';
@@ -72,12 +70,12 @@ class Article extends Component {
     const { title='', createAt='', tags=[] } = this.state.article;
     return (
       <Layout>
-        <div>
-          <Title className="article-title">{ title }</Title>
-          <ArticleData><span>{ createAt }</span></ArticleData>
+        <div className="article-page">
+          <h1 className="article-title">{ title }</h1>
+          <p className="article-infos"><span>{ createAt }</span></p>
           <TagList tags={ tags }/>
-          <Content dangerouslySetInnerHTML={ this.parseMardown() } className="md-body">
-          </Content>
+          <div dangerouslySetInnerHTML={ this.parseMardown() } className="md-body">
+          </div>
         </div>
         <div style={{ position: 'relative', width: 930, textAlign: 'right' }}>
           <Anchor content={this.state.anchorInfos} match={this.props.match}/>
@@ -88,20 +86,3 @@ class Article extends Component {
 };
 
 export default Article;
-
-const ArticleData = styled.p`
-  font-size: 12px;
-  color: grey;
-  font-weight: 700;
-  padding: 0 0 0 5px;
-  text-align: center;
-`;
-
-const Content = styled.div`
-  margin-top: 20px;
-  font-size: 14px;
-  color: #414141;
-  p {
-    margin: 12px 10px;
-  }
-`;

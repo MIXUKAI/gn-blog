@@ -1,36 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import YearBlock from './YearBlock';
+import ListUl from './ListUl';
 import groupDataByYear from '../../../utils/groupDataByYear';
 
-function generateBlocks(data) {
-  return data.map(block => {
-    return <YearBlock year={block.year} data={block.data} key={block.year} />
-  });
-}
-
 class List extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      blocks: []
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.data !== this.props.data) {
-      const blockedData = groupDataByYear(this.props.data);
-      this.setState({ blocks: generateBlocks(blockedData)});
-    }
+  shouldComponentUpdate(prevProps) {
+    return prevProps.data !== this.props.data;
   }
 
   render() {
+    const formatedData = groupDataByYear(this.props.data);
     return (
       <div style={{margin: '15px 0'}}>
-        { this.state.blocks }
+        {
+          formatedData.map(item => {
+            return <ListUl year={item.year} data={item.data} key={item.year} />
+          })
+        }
       </div>
     );
   }
+}
+
+List.propTypes = {
+  data: PropTypes.array.isRequired
 }
 
 export default List;
