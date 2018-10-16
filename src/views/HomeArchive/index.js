@@ -40,8 +40,11 @@ class TagArchive extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.name !== this.props.match.params.name) {
-      if (this.props.match.params.name === void 0) {
+    const tagName = this.props.match.params.name;
+    if (prevProps.match.params.name !== tagName) {
+      const title = tagName ? tagName : '全部';
+      document.title = `标签 ${title}`;
+      if (tagName === void 0) {
         this.fetchAllArticles();
         return;
       }
@@ -51,6 +54,8 @@ class TagArchive extends React.Component {
 
   componentDidMount() {
     const tagName = this.props.match.params.name;
+    const title = tagName ? tagName : '全部';
+    document.title = `标签 ${title}`;
     if (tagName !== void 0) {
       this.getArticleByTagName(tagName);
     } else {

@@ -61,6 +61,7 @@ class HomeArticles extends Component {
 
   componentDidMount() {
     // 监听popstate事件，当history.back等操作的时候重新获取数据
+    document.title = "gn's Blog | 首页";
     window.addEventListener('popstate', this.handlePopState);
 
     const page = parseInt(this.props.match.params.page);

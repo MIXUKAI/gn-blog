@@ -15,7 +15,11 @@ class Article extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      article: {},
+      article: {
+        title: '',
+        createAt: '',
+        tags: []
+      },
       anchorInfos: []
     }
   }
@@ -67,7 +71,8 @@ class Article extends Component {
   }
 
   render() {
-    const { title='', createAt='', tags=[] } = this.state.article;
+    const { title, createAt, tags } = this.state.article;
+    document.title = `${title}`;
     return (
       <Layout>
         <div className="article-page">
