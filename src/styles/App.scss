@@ -49,9 +49,20 @@
   transition: opacity 600ms linear;
 }
 
+
+// 顶部
 .header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
   display: flex;
+  z-index: 100;
   flex-direction: row-reverse;
+  height: 60px;
+  background-color: rgba(255,255,255,.9);
+  box-shadow: 0 0 10px rgba(14,14,14,.26);
+  padding: 8px 10px;
 }
 
 .nav-ul {
@@ -61,16 +72,17 @@
 }
 .nav-ul li {
   display: inline-block;
-  padding: 0 15px;
-  margin: 0 15px;
+  padding: 0 10px;
+  margin: 0 10px;
 }
 
+
+// 用户侧边栏
 .user-container {
   width: 220px;
   text-align: center;
 }
 
-//  user aside
 .link-list {
   padding: 0 20px;
   margin-top: 10px;
@@ -116,7 +128,7 @@
   }
   .link-list li {
     padding: 10px 5px;
-    margin: 0 5px;
+    margin: 0 px;
     display: inline;
     font-size: 15px;
   }
@@ -126,6 +138,28 @@
   }
 }
 
+// 底部导航
+.bottom-bar {
+  position: fixed;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(255,255,255,.9);
+  bottom: 0;
+}
+
+#return-top {
+  font-size: 28px;
+  color: rgb(44,139,188);
+  cursor: pointer;
+  padding: 5px;
+  user-select: none;
+  border: 1px solid rgb(44,139,188);
+  border-radius: 50%;
+  &:hover {
+    background-color: rgb(44,139,188);
+    color: rgba(255,255,255,.9);
+  }
+}
 .github-corner:hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out;
 }

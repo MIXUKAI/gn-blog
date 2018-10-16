@@ -9,7 +9,6 @@ import baseApiURL from '../../utils/api';
 import TagList from './components/TagList'
 import Title from './components/Title';
 import Anchor from './components/Anchor';
-import Top from './components/Top';
 import Layout from '../layout/ArticleLayout';
 import myMarked from '../../utils/my_marked';
 import getHeaders from '../../utils/getHeaders';
@@ -75,7 +74,7 @@ class Article extends Component {
       <Layout>
         <div>
           <Title className="article-title">{ title }</Title>
-          <ArticleData>发布于：<span>{ createAt }</span></ArticleData>
+          <ArticleData><span>{ createAt }</span></ArticleData>
           <TagList tags={ tags }/>
           <Content dangerouslySetInnerHTML={ this.parseMardown() } className="md-body">
           </Content>
@@ -83,7 +82,6 @@ class Article extends Component {
         <div style={{ position: 'relative', width: 930, textAlign: 'right' }}>
           <Anchor content={this.state.anchorInfos} match={this.props.match}/>
         </div>
-        <Top />
       </Layout>
     )
   };
@@ -96,14 +94,13 @@ const ArticleData = styled.p`
   color: grey;
   font-weight: 700;
   padding: 0 0 0 5px;
+  text-align: center;
 `;
 
 const Content = styled.div`
-  padding-top: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 14px;
   color: #414141;
-  border-top: 1px solid #eee;
   p {
     margin: 12px 10px;
   }

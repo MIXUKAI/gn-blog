@@ -47,4 +47,4 @@ const Tag = styled(Link)`
   }
 `
 
-export default ({children, href}) => <Tag to={`/tags/${children}`}>{ children }</Tag>
+export default ({children}) => <Tag to={`/tags/${children}`}>{ children }</Tag>

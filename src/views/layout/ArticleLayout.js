@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Header from '../Article/components/Header';
+import BottomBar from '../Article/components/BottomBar';
 import Footer from '../../components/Footer';
 
 const Wrapper = styled.div`
@@ -17,13 +18,13 @@ const Wrapper = styled.div`
 const Layout = ({ children }) => {
   return (
     [
-      <Header key="header"/>,
       <Wrapper key="article-body">
         <div className="body">
           {children}
         </div>
       </Wrapper>,
-      <Footer key="footer"/>
+      <Footer key="footer"/>,
+      <BottomBar key="bottom-bar"/>
     ]
   );
 };

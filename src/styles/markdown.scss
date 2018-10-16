@@ -6,15 +6,19 @@
     font-weight: 600;
   }
 
-  h2::before {
-    content: "#";
-    color:#2c8bbc;
-    position: absolute;
-    left: -1rem;
-    top: 2px;
-    font-size: 1.2rem;
-    font-weight: bold;
+  h2 {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
   }
+  // h2::before {
+  //   content: "#";
+  //   color:#2c8bbc;
+  //   position: absolute;
+  //   left: -1rem;
+  //   top: 2px;
+  //   font-size: 1.2rem;
+  //   font-weight: bold;
+  // }
 
   p {
     line-height: 1.8;
@@ -25,6 +29,7 @@
     code {
       padding: 0.5em 1.5em;
       font-family: "Source Code Variable";
+      line-height: 1.5;
     }
   }
 
@@ -49,10 +54,11 @@
   }
 
   blockquote {
-    border-left: 5px solid rgb(44, 139, 188);
+    border-left: 4px solid rgb(44, 139, 188);
     // background: rgba(0, 0, 0, .05);
     padding: 15px;
     margin: 13px 0;
+    margin-left: 4px;
   }
   a {
     color: #1fa3ef;
@@ -66,4 +72,5 @@ code {
   background: rgba(0, 0, 0, .05);
   padding: 3px 4px;
   margin: 0 2px;
+  color: #d05;
 }

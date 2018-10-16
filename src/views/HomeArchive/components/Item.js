@@ -8,10 +8,9 @@ const ItemWrap = styled.li`
   list-style: square;
 `
 const StyledLink = styled(Link)`
-  color: #333;
+  color: #3662A2;
   text-decoration: none;
   &:hover {
-    color: #3662A2;
     text-decoration: underline;
   }
 `
@@ -28,10 +27,6 @@ const Item = (props) => {
       </StyledLink>
     </ItemWrap>
   );
-}
-
-Item.defaultProps = {
-  time: '1669-546'
 }
 
 export default Item;

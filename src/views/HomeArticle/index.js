@@ -33,7 +33,11 @@ class HomeArticles extends Component {
     axios.get(url)
       .then(res => {
         // TODO: 现在是为了效果，以后改掉
-        this.setState({ articles: res.data, page: targetPage });
+        if (res.data.length) {
+          this.setState({ articles: res.data, page: targetPage });
+        } else {
+          window.alert('meiyou shujul');
+        }
         this.props.loading(false);
       });
   }

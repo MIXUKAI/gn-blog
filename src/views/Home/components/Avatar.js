@@ -5,7 +5,7 @@ const Aavatar = styled.img`
   margin-top: 3px;
   width: 120px;
   height: 120px;
-  border-radius: 3px;
+  border-radius: 50%;
 `;
  
 export default (props) => {

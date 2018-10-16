@@ -5,7 +5,7 @@ import Tag from './Tag';
 const TagList = (props) => {
   const { tags } = props;
   return (
-    <div>
+    <div style={{textAlign:'center'}}>
       {
         tags.map(item => 
           <Tag key={item}>{item}</Tag>

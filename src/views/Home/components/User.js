@@ -30,7 +30,7 @@ export default () => {
     <div className="user-container">
       <Avatar src="https://avatars3.githubusercontent.com/u/23211153?s=400&u=d51b9822ad0efab99740f2999222de455d7fe8f6&v=4"/>
       <Name>Guanine</Name>
-      <p style={{color:"#2F3421", padding:'5px 0'}}>伪前端，真肥宅</p>
+      <p style={{color:"#2F3421", padding:'5px 0'}}>伪前端</p>
       <p style={{color:"#2F3421",  padding:'5px 0 10px'}}>今天也要加油鸭</p>
       <IconList>
       </IconList>

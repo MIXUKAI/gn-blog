@@ -9,7 +9,8 @@ const LinkToReact = styled.a`
 const footerStyle = {
   width: '100%',
   backgroundColor: '#fff',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  paddingBottom: '30px'
 }
 
 const container = {
