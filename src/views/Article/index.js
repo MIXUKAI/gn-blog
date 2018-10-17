@@ -14,7 +14,7 @@ import getHeaders from '../../utils/getHeaders';
 
 class Article extends Component {
 	constructor(props) {
-		super(props);
+    super(props);
 		this.state = {
 			anchorInfos: []
 		};
@@ -22,8 +22,8 @@ class Article extends Component {
 	parseMardown() {
 		const { md_content } = this.props.article;
 		return { __html: myMarked(md_content) };
-	}
-	// 在内容渲染完毕之后去获取各个标题
+  }
+  
 	getAnchorInfos = () => {
 		const anchorInfos = getHeaders('md-body');
 		this.setState({ anchorInfos });
@@ -31,28 +31,23 @@ class Article extends Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		const id = this.props.match.params.id;
-		sessionStorage.setItem(`article_${id}`, JSON.stringify(this.state.article));
-		sessionStorage.setItem(`article_date_${id}`, Date.now());
+		sessionStorage.setItem(`article_${id}`, JSON.stringify(this.props.article));
+    sessionStorage.setItem(`article_date_${id}`, Date.now());
+    // if (prevState.anchorInfos.length === 0) {
+    //   this.getAnchorInfos();
+    // }
+    console.log('did update');
 	}
-
-	fetchData = (articleId) => {
-		// const article = sessionStorage.getItem(`article_${articleId}`);
-		// if (article) {
-		//   this.setState({ article: JSON.parse(article) }, this.getAnchorInfos);
-		// } else {
-		//   // this.getArticleById(articleId);
-		// }
-		this.props.fetchArticleById(articleId);
-	};
 
 	componentDidMount() {
 		const id = this.props.match.params.id;
-		this.fetchData(id);
+		this.props.fetchArticleById(id);
 	}
 
 	render() {
-		const { title, createAt, tags } = this.props.article;
-		document.title = `${title}`;
+    const { title, createAt, tags } = this.props.article;
+    document.title = `${title}`;
+    // const anchorInfos = this.getAnchorInfos();
 		return (
 			<Layout>
 				<div className="article-page">
