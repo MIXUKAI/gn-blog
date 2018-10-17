@@ -16,12 +16,12 @@ class TagArchive extends React.Component {
 
   fetchAllArticles = () => {
     const url = `${baseApiUrl}/article/all`;
-    this.props.loading(true);
+    // this.props.loading(true);
     axios.get(url)
       .then(res => {
         const data = res.data;
         this.setState({ articles: data });
-        this.props.loading(false);
+        // this.props.loading(false);
       }).catch(err => {
         console.error(err);
       })
@@ -29,12 +29,12 @@ class TagArchive extends React.Component {
 
   getArticleByTagName = (tagname) => {
     const url = `${baseApiUrl}/article/tag/${tagname}`;
-    this.props.loading(true);
+    // this.props.loading(true);
     axios.get(url)
       .then(res => {
         const data = res.data;
         this.setState({ articles: data });
-        this.props.loading(false);
+        // this.props.loading(false);
       })
       .catch(err => console.log(err));
   }

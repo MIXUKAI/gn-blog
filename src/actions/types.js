@@ -1,0 +1,3 @@
+export const FETCH_TAGS = 'FETCH_TAGS';
+export const FETCH_ARTICLE_BY_ID = 'FETCH_ARTICLE_BY_ID';
+export const HANDLE_LOADING = 'HANDLE_LOADING';

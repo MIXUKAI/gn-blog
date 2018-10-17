@@ -28,7 +28,7 @@ class HomeArticles extends Component {
     // 已经控制了传入的page指因此不用再判断了
     const url = `${baseApiURL}/article/?page=${targetPage}`;
 
-    this.props.loading(true);
+    // this.props.loading(true);
 
     axios.get(url)
       .then(res => {
@@ -36,7 +36,7 @@ class HomeArticles extends Component {
         if (res.data.length) {
           this.setState({ articles: res.data, page: targetPage });
         }
-        this.props.loading(false);
+        // this.props.loading(false);
       });
   }
 
