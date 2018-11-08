@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchTags } from '../actions/tagActions';
+import { fetchTags } from '../actions';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Layout from './layout/HomeLayout';
 

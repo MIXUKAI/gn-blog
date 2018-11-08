@@ -7,13 +7,25 @@ import Icon from '../../../components/Icon';
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: #111
-`
+`;
+
+const Navs = [
+	{ route: '/', icon: 'home', text: '首页' },
+	{ route: '/tags', icon: 'fenlei-copy', text: '分类' },
+	{ route: '/about', icon: 'guanyuwomen', text: '关于' },
+	{ route: '/admin', icon: 'guanlizhongxin', text: '管理' }
+];
 
 export default () => (
-  <ul className="link-list">
-    <StyledLink to="/"><li><Icon icon="icon-home" />首页</li></StyledLink>
-    <StyledLink to="/tags"><li><Icon icon="icon-fenlei-copy" />分类</li></StyledLink>
-    <StyledLink to="/about"><li><Icon icon="icon-guanyuwomen" />关于</li></StyledLink>
-    <StyledLink to="/admin"><li><Icon icon="icon-guanlizhongxin" />管理</li></StyledLink>
-  </ul>
+	<ul className="link-list">
+		{Navs.map((item) => (
+			<StyledLink to={item.route}>
+				<li>
+					<Icon icon={`icon-${item.icon}`}
+        />
+					{item.text}
+				</li>
+			</StyledLink>
+		))}
+	</ul>
 );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchArticleById } from '../../actions/articleActions';
+import { fetchArticleById } from '../../actions';
 
 import './Article.scss';
 import '../../styles/solarized-light.css';
